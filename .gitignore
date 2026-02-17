@@ -1,0 +1,19 @@
+.DS_Store
+
+# R session/user artifacts
+.Rhistory
+.RData
+.Ruserdata
+.Rproj.user/
+
+# Quarto and render intermediates
+.quarto/
+*_cache/
+*_files/
+*.knit.md
+*.html
+*.tex
+*.log
+*.aux
+*.out
+*.toc

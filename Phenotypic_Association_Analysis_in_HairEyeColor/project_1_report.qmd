@@ -1,0 +1,150 @@
+---
+title: "Phenotypic Association Analysis in HairEyeColor"
+subtitle: "A contingency-table study with publication-style visualization"
+author: "Daniel Harrod"
+date: today
+format:
+  pdf:
+    toc: true
+    number-sections: true
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+## Abstract
+
+This report analyzes the relationship between hair color and eye color using `datasets::HairEyeColor`, a built-in categorical dataset in R.  
+The analysis applies contingency-table inference through chi-square tests of independence, standardized residual diagnostics, and Cramer's V effect sizes, with results contextualized by sex.  
+Visual outputs are designed to match academic presentation standards, with consistent typography, colorblind-aware palettes, and high-resolution exports.
+
+## Introduction
+
+Categorical trait combinations are commonly analyzed in population studies to identify non-random structure in observed frequencies.  
+Although `HairEyeColor` is not a direct genotype dataset, it is an appropriate pedagogical proxy for studying trait-association methodology central to genetics-oriented data science.
+
+This project addresses three questions:
+
+1. Are hair color and eye color independent in the pooled sample?
+2. Does this association persist when stratified by sex?
+3. Which trait pairings contribute most strongly to departures from independence?
+
+## Data and Preprocessing
+
+The source data are a three-way contingency table (`Hair`, `Eye`, `Sex`) with observed counts (`Freq`).
+
+```{r}
+source("R/analysis.R")
+results <- analyze_hair_eye(project_root = ".")
+data_long <- results$data_long
+test_summary <- results$test_summary
+residual_long <- results$residual_long
+```
+
+```{r}
+knitr::kable(
+  head(data_long, 12),
+  caption = "First 12 rows of the long-format HairEyeColor table."
+)
+```
+
+## Methods
+
+### Independence Testing
+
+For each contingency table (overall, male, and female), a chi-square test of independence is used:
+
+$$
+\chi^2 = \sum_{i=1}^{r}\sum_{j=1}^{c}\frac{(O_{ij} - E_{ij})^2}{E_{ij}}
+$$
+
+where \( O_{ij} \) and \( E_{ij} \) are observed and expected counts.
+
+### Effect Size
+
+Cramer's V quantifies association strength while accounting for table size:
+
+$$
+V = \sqrt{\frac{\chi^2}{n \cdot \min(r-1, c-1)}}
+$$
+
+### Residual Diagnostics
+
+Standardized residuals identify cells with unusually high or low counts under independence assumptions.  
+As a practical heuristic, absolute residuals greater than 2 indicate meaningful local deviations.
+
+## Results
+
+### Statistical Test Summary
+
+```{r}
+formatted_tests <- test_summary |>
+  dplyr::mutate(
+    chi_square = round(chi_square, 2),
+    p_value = signif(p_value, 3),
+    cramers_v = round(cramers_v, 3)
+  )
+
+knitr::kable(
+  formatted_tests,
+  caption = "Chi-square results and effect sizes by model."
+)
+```
+
+The table shows whether trait association is statistically detectable and how large that association is in practical terms.
+
+### Figure 1: Proportional Composition by Sex
+
+```{r fig.width=10, fig.height=6, dpi=300}
+results$plots$proportion_bars
+```
+
+This chart compares eye-color composition within each hair-color category, separated by sex.  
+Differences in stacked proportions indicate heterogeneous trait association patterns.
+
+### Figure 2: Observed Frequency Heatmap
+
+```{r fig.width=8, fig.height=6, dpi=300}
+results$plots$frequency_heatmap
+```
+
+Higher-intensity cells represent more common hair-eye pairings in the pooled sample.
+
+### Figure 3: Standardized Residual Heatmap by Sex
+
+```{r fig.width=10, fig.height=6, dpi=300}
+results$plots$residual_heatmap
+```
+
+Positive residuals indicate over-represented pairings; negative residuals indicate under-represented pairings.
+
+### Figure 4: Mosaic Diagnostic Plot
+
+```{r fig.width=10, fig.height=7, dpi=300}
+knitr::include_graphics("figures/fig_04_mosaic_overall.png")
+```
+
+The mosaic plot provides a compact view of cell prevalence and category structure in the pooled contingency table.
+
+## Discussion
+
+The analysis demonstrates how a compact categorical dataset can support rigorous inference and visual diagnostics.  
+Statistical significance and effect-size interpretation should be considered jointly: a low p-value indicates detectable structure, while Cramer's V contextualizes its magnitude.
+
+### Limitations
+
+- This is an aggregated historical dataset, not an individual-level modern cohort.
+- Trait categories are coarse and do not represent the full biological complexity of pigmentation genetics.
+- The chi-square framework assumes adequate expected counts; sparse cells can influence stability.
+
+## Conclusion
+
+`HairEyeColor` provides a useful teaching framework for genetics-adjacent contingency analysis in R.  
+A reproducible pipeline combining inferential testing, residual diagnostics, and publication-grade figures can produce a report suitable for graduate-level submission standards.
+
+## Reproducibility
+
+```{r}
+sessionInfo()
+```

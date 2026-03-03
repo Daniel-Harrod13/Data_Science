@@ -72,6 +72,7 @@ python IBM_Predictive_Maintenance_ML/src/predict.py \
 Use this for interview presentation:
 
 - `IBM_Predictive_Maintenance_ML/notebooks/interview_walkthrough.ipynb`
+- `IBM_Predictive_Maintenance_ML/PRESENTATION_README.md` (presentation page with current run results)
 
 ## IBM-Focused Talking Points
 

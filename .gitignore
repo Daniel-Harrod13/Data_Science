@@ -17,3 +17,12 @@
 *.aux
 *.out
 *.toc
+
+# Python artifacts
+__pycache__/
+*.pyc
+.venv/
+
+# ML generated outputs
+**/artifacts/
+**/data/processed/

@@ -1,4 +1,5 @@
 .DS_Store
+.vscode/
 
 # R session/user artifacts
 .Rhistory

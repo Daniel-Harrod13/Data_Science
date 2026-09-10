@@ -1,0 +1,4 @@
+data/raw/*.zip
+artifacts/
+__pycache__/
+*.pyc

@@ -1,0 +1,5 @@
+outcome,method,pre_mean,post_mean,estimate,std_error,p_value,n_games,r_squared
+duration_minutes,naive_pre_post_difference,189.01358304177813,160.49969129450506,-28.513891747273078,,,,
+duration_minutes,adjusted_ols_with_month_and_park_fixed_effects,,,-30.519159897250777,0.3520643799497345,0.0,9714.0,0.6569897271759926
+total_stolen_bases,naive_pre_post_difference,0.9670714138711669,1.4653220827330726,0.4982506688619057,,,,
+total_stolen_bases,adjusted_ols_with_month_and_park_fixed_effects,,,0.4950320285420591,0.028352135783631244,2.8826767474119995e-68,9714.0,0.06753216432491904

@@ -12,6 +12,7 @@ This repository is my working hub for data science projects, reusable analysis p
 | [`Surrogate_Index_Aquarium_Store`](./Surrogate_Index_Aquarium_Store/) | Surrogate-index project estimating long-term treatment effects from short-term aquarium-store behaviors |
 | [`DML_Healthcare_Wait_Time_Linear_Trap`](./DML_Healthcare_Wait_Time_Linear_Trap/) | Double Machine Learning project showing how linear fixed effects can mis-size nonlinear healthcare wait-time interventions |
 | [`Bayesian_Healthcare_AB_Testing_False_Positive_Trap`](./Bayesian_Healthcare_AB_Testing_False_Positive_Trap/) | Monte Carlo study of optimistic historical priors in low-traffic healthcare A/B tests |
+| [`AirForce_Recruiting_Switchback_Experiment`](./AirForce_Recruiting_Switchback_Experiment/) | Switchback experiment simulation measuring paid-media incrementality for Air Force recruiting campaigns |
 | [`model_templates`](./model_templates/) | Reusable machine learning templates to copy into future projects |
 
 ## Current Projects
@@ -55,6 +56,14 @@ A synthetic Monte Carlo project comparing a one-sided frequentist z-test with Ba
 **Tools:** Python, NumPy, pandas, SciPy, seaborn, matplotlib  
 **Methods:** binomial A/B simulation, normal-normal conjugate updating, empirical optimistic priors, prior-mean haircut sensitivity, long-run decision operating characteristics  
 **Current results:** the one-sided 5% benchmark and the no-history Bayesian rule have comparable directional thresholds. Bayesian performance varies substantially with historical sample size and prior haircut; the full power/risk grid is reported rather than treating any single prior as universally preferred.
+
+### Air Force Recruiting Switchback Experiment
+
+A simulated public-sector marketing analytics project that tests whether reduced paid-media bids preserve total qualified recruiting leads while lowering cost.
+
+**Tools:** Python, pandas, statsmodels, matplotlib  
+**Methods:** region-day switchback experiment, fixed effects regression, permutation/randomization inference, platform attribution vs first-party outcome measurement  
+**Current results:** reduced-bid days save about $669 per region-day, while platform-attributed leads fall by about 21.74 but first-party total qualified leads fall by only about 2.04. Cost per qualified lead drops from about $33.35 to $18.22.
 
 ### Phenotypic Association Analysis in `HairEyeColor`
 

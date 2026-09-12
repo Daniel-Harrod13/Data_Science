@@ -11,6 +11,7 @@ This repository is my working hub for data science projects, reusable analysis p
 | [`Uplift_Modeling_Random_Forest`](./Uplift_Modeling_Random_Forest/) | Causal machine learning project estimating heterogeneous treatment effects with a Random Forest T-learner |
 | [`Surrogate_Index_Aquarium_Store`](./Surrogate_Index_Aquarium_Store/) | Surrogate-index project estimating long-term treatment effects from short-term aquarium-store behaviors |
 | [`DML_Healthcare_Wait_Time_Linear_Trap`](./DML_Healthcare_Wait_Time_Linear_Trap/) | Double Machine Learning project showing how linear fixed effects can mis-size nonlinear healthcare wait-time interventions |
+| [`Bayesian_Healthcare_AB_Testing_False_Positive_Trap`](./Bayesian_Healthcare_AB_Testing_False_Positive_Trap/) | Monte Carlo study of optimistic historical priors in low-traffic healthcare A/B tests |
 | [`model_templates`](./model_templates/) | Reusable machine learning templates to copy into future projects |
 
 ## Current Projects
@@ -46,6 +47,14 @@ A causal ML simulation showing how fixed effects can reduce confounding but stil
 **Tools:** Python, pandas, scikit-learn, statsmodels, matplotlib  
 **Methods:** simulated observational healthcare operations data, fixed effects OLS, cross-fitted nuisance models, local Double Machine Learning, nonlinear wait-time dose response  
 **Current results:** for patients waiting more than 30 days, Local DML estimates a 20% wait-time reduction would improve adherence by about 12.17 points per targeted patient, closer to the simulated oracle value of 13.59 than the fixed-effects linear estimate of 9.94.
+
+### Bayesian Healthcare A/B Testing: False-Positive Trap
+
+A synthetic Monte Carlo project comparing a one-sided frequentist z-test with Bayesian shipping rules that borrow from genuine historical +2 percentage-point winners in appointment-reminder experiments with 300 patients per arm.
+
+**Tools:** Python, NumPy, pandas, SciPy, seaborn, matplotlib  
+**Methods:** binomial A/B simulation, normal-normal conjugate updating, empirical optimistic priors, prior-mean haircut sensitivity, long-run decision operating characteristics  
+**Current results:** the one-sided 5% benchmark and the no-history Bayesian rule have comparable directional thresholds. Bayesian performance varies substantially with historical sample size and prior haircut; the full power/risk grid is reported rather than treating any single prior as universally preferred.
 
 ### Phenotypic Association Analysis in `HairEyeColor`
 

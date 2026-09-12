@@ -1,0 +1,6 @@
+k_historical,mean_raw_historical_estimate,prior_standard_deviation,interpretation
+0,,inf,flat-prior limit (zero prior precision)
+1,0.020179533333333336,0.03324655370611116,normal prior before mean haircut
+3,0.020091511111111113,0.019194906731850626,normal prior before mean haircut
+5,0.020074239999999997,0.014868310820892423,normal prior before mean haircut
+10,0.0200335,0.010513483406242355,normal prior before mean haircut

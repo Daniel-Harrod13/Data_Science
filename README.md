@@ -10,6 +10,7 @@ This repository is my working hub for data science projects, reusable analysis p
 | [`Causal_MLB_Pitch_Clock_Impact`](./Causal_MLB_Pitch_Clock_Impact/) | Causal inference project estimating the impact of MLB's 2023 pitch clock on game duration |
 | [`Uplift_Modeling_Random_Forest`](./Uplift_Modeling_Random_Forest/) | Causal machine learning project estimating heterogeneous treatment effects with a Random Forest T-learner |
 | [`Surrogate_Index_Aquarium_Store`](./Surrogate_Index_Aquarium_Store/) | Surrogate-index project estimating long-term treatment effects from short-term aquarium-store behaviors |
+| [`DML_Healthcare_Wait_Time_Linear_Trap`](./DML_Healthcare_Wait_Time_Linear_Trap/) | Double Machine Learning project showing how linear fixed effects can mis-size nonlinear healthcare wait-time interventions |
 | [`model_templates`](./model_templates/) | Reusable machine learning templates to copy into future projects |
 
 ## Current Projects
@@ -37,6 +38,14 @@ A causal/business analytics project that estimates the long-term impact of an aq
 **Tools:** Python, pandas, scikit-learn, matplotlib  
 **Methods:** surrogate-index modeling, randomized treatment/control experiment simulation, short-term behavioral proxies, long-term value prediction  
 **Current results:** surrogate-index validation R-squared of 0.899 and correlation of 0.950. The estimated treatment effect on the surrogate index is about $51.93, close to the simulated true 180-day ATE of about $56.91.
+
+### Double Machine Learning vs Fixed Effects: Healthcare Wait Times
+
+A causal ML simulation showing how fixed effects can reduce confounding but still mis-size opportunity when treatment effects are nonlinear.
+
+**Tools:** Python, pandas, scikit-learn, statsmodels, matplotlib  
+**Methods:** simulated observational healthcare operations data, fixed effects OLS, cross-fitted nuisance models, local Double Machine Learning, nonlinear wait-time dose response  
+**Current results:** for patients waiting more than 30 days, Local DML estimates a 20% wait-time reduction would improve adherence by about 12.17 points per targeted patient, closer to the simulated oracle value of 13.59 than the fixed-effects linear estimate of 9.94.
 
 ### Phenotypic Association Analysis in `HairEyeColor`
 

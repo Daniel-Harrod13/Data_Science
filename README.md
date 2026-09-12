@@ -8,6 +8,7 @@ This repository is my working hub for data science projects, reusable analysis p
 |---|---|
 | [`Phenotypic_Association_Analysis_in_HairEyeColor`](./Phenotypic_Association_Analysis_in_HairEyeColor/) | Completed R/Quarto statistical analysis project |
 | [`Causal_MLB_Pitch_Clock_Impact`](./Causal_MLB_Pitch_Clock_Impact/) | Causal inference project estimating the impact of MLB's 2023 pitch clock on game duration |
+| [`Uplift_Modeling_Random_Forest`](./Uplift_Modeling_Random_Forest/) | Causal machine learning project estimating heterogeneous treatment effects with a Random Forest T-learner |
 | [`model_templates`](./model_templates/) | Reusable machine learning templates to copy into future projects |
 
 ## Current Projects
@@ -19,6 +20,14 @@ A causal inference project using Retrosheet game logs to estimate the impact of 
 **Tools:** Python, pandas, statsmodels, seaborn  
 **Methods:** interrupted time-series style pre/post design, adjusted regression, fixed effects  
 **Headline result:** post-2023 games are roughly 29-31 minutes shorter on average, depending on specification.
+
+### Uplift Modeling with Random Forests
+
+A causal machine learning project that simulates a treatment/control marketing experiment and estimates customer-level conditional average treatment effects using a Random Forest T-learner.
+
+**Tools:** Python, pandas, scikit-learn, matplotlib  
+**Methods:** simulated experiment, T-learner, separate treated/control outcome models, CATE estimation, uplift decile analysis  
+**Current results:** holdout CATE correlation of 0.910 and R-squared of 0.821. The model ranks customers into a targeting policy where the top 30% by predicted uplift are labeled `Would treat` and the rest are `Excluded`.
 
 ### Phenotypic Association Analysis in `HairEyeColor`
 
@@ -46,6 +55,7 @@ This repo is meant to grow into a clean, practical data science portfolio showin
 
 - Exploratory data analysis
 - Statistical inference
+- Causal inference and uplift modeling
 - Machine learning workflows
 - Reusable algorithm patterns
 - Data visualization

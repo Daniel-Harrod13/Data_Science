@@ -149,12 +149,30 @@ def make_plots(test: pd.DataFrame, deciles: pd.DataFrame) -> None:
     ARTIFACT_DIR.mkdir(parents=True, exist_ok=True)
 
     plt.figure(figsize=(8, 6))
-    plt.scatter(test["true_cate"], test["pred_cate"], alpha=0.28, s=14)
+    colors = {"Would treat": "#2ca02c", "Excluded": "#9e9e9e"}
+    for policy_group, color in colors.items():
+        subset = test[test["policy_group"] == policy_group]
+        plt.scatter(
+            subset["true_cate"],
+            subset["pred_cate"],
+            alpha=0.45,
+            s=18,
+            color=color,
+            label=f"{policy_group} (n={len(subset):,})",
+        )
     lims = [test[["true_cate", "pred_cate"]].min().min(), test[["true_cate", "pred_cate"]].max().max()]
-    plt.plot(lims, lims, "--", color="black", linewidth=1)
-    plt.xlabel("True CATE")
+    plt.plot(lims, lims, "--", color="black", linewidth=1, label="Perfect prediction")
+    plt.axhline(
+        test["treatment_policy_threshold"].iloc[0],
+        color="#2ca02c",
+        linestyle=":",
+        linewidth=1.5,
+        label="Treatment threshold",
+    )
+    plt.xlabel("True treatment effect, tau(x)")
     plt.ylabel("Predicted CATE")
-    plt.title("Random Forest T-Learner: Predicted vs. True Treatment Effect")
+    plt.title("Predicted CATE vs. True Tau by Targeting Decision")
+    plt.legend(frameon=True)
     plt.tight_layout()
     plt.savefig(ARTIFACT_DIR / "predicted_vs_true_cate.png", dpi=160)
     plt.close()
@@ -184,6 +202,12 @@ def main() -> None:
 
     test = test.copy()
     test["pred_cate"] = predict_cate(treated_model, control_model, test)
+
+    # Example targeting policy: treat the top 30% of customers by predicted uplift.
+    treatment_policy_threshold = test["pred_cate"].quantile(0.70)
+    test["treatment_policy_threshold"] = treatment_policy_threshold
+    test["would_treat"] = test["pred_cate"] >= treatment_policy_threshold
+    test["policy_group"] = np.where(test["would_treat"], "Would treat", "Excluded")
     test.to_csv(DATA_DIR / "test_predictions.csv", index=False)
 
     rmse = np.sqrt(mean_squared_error(test["true_cate"], test["pred_cate"]))
@@ -197,8 +221,10 @@ def main() -> None:
 
     top_decile = deciles.loc[deciles["uplift_decile"] == 1, "avg_true_cate"].iloc[0]
     bottom_decile = deciles.loc[deciles["uplift_decile"] == 10, "avg_true_cate"].iloc[0]
+    would_treat_count = int(test["would_treat"].sum())
+    excluded_count = int((~test["would_treat"]).sum())
 
-    summary = f"""# Model Results\n\nRandom Forest T-learner performance on holdout data:\n\n- CATE RMSE: {rmse:.2f}\n- CATE MAE: {mae:.2f}\n- CATE R-squared: {r2:.3f}\n- CATE correlation: {corr:.3f}\n- True uplift in top predicted decile: {top_decile:.2f}\n- True uplift in bottom predicted decile: {bottom_decile:.2f}\n\nA positive gap between top and bottom deciles indicates the model can rank customers by expected incremental impact.\n"""
+    summary = f"""# Model Results\n\nRandom Forest T-learner performance on holdout data:\n\n- CATE RMSE: {rmse:.2f}\n- CATE MAE: {mae:.2f}\n- CATE R-squared: {r2:.3f}\n- CATE correlation: {corr:.3f}\n- True uplift in top predicted decile: {top_decile:.2f}\n- True uplift in bottom predicted decile: {bottom_decile:.2f}\n\nTargeting policy:\n\n- Treat customers with predicted CATE >= {treatment_policy_threshold:.2f}\n- Would treat: {would_treat_count:,} customers\n- Excluded: {excluded_count:,} customers\n\nA positive gap between top and bottom deciles indicates the model can rank customers by expected incremental impact.\n"""
     (REPORT_DIR / "model_results.md").write_text(summary)
     print(summary)
 

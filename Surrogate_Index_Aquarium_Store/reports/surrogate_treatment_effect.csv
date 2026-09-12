@@ -1,0 +1,7 @@
+,value
+treated_mean,388.9915537703817
+control_mean,337.06228026081516
+surrogate_index_ate,51.92927350956654
+true_180d_ate_for_validation,56.909132751158324
+n_treated,2005.0
+n_control,1995.0

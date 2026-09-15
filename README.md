@@ -93,6 +93,7 @@ The [`model_templates`](./model_templates/) folder contains ready-to-adapt start
 - Time-series forecasting
 - PCA / dimensionality reduction
 - Shared ML helper utilities
+- [Causal and experimentation templates](./model_templates/causal_and_experimentation/README.md): six domain-neutral building blocks with a question-to-method mind map and per-method usage guides
 
 These are designed to be copied into new project folders and modified for the dataset, target variable, metrics, and business problem at hand.
 

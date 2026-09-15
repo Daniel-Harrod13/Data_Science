@@ -12,6 +12,11 @@ This folder is a grab-and-adapt library for common data science workflows. Each 
 | `time_series/` | Forecasting and time-aware validation |
 | `dimensionality_reduction/` | PCA-style feature compression and visualization |
 | `utilities/` | Shared helper functions for loading data, splitting, metrics, and saving artifacts |
+| [`causal_and_experimentation/`](./causal_and_experimentation/) | Domain-neutral causal and experiment templates with a question-to-method mind map |
+
+## Causal and Experimentation Mind Map
+
+For uplift modeling, surrogate indices, Double Machine Learning, Bayesian A/B updating, switchback designs, and sequential monitoring, start with the [question-to-method guide](./causal_and_experimentation/README.md). Each method has a standalone module and its own usage/assumptions README. These templates contain no project datasets or reporting code; the original portfolio projects remain separate.
 
 ## Typical Adaptation Steps
 

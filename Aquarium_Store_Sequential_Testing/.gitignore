@@ -1,0 +1,4 @@
+# Keep portfolio visualizations despite the repository-wide artifact exclusion.
+!artifacts/
+artifacts/*
+!artifacts/*.png

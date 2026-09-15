@@ -13,6 +13,7 @@ This repository is my working hub for data science projects, reusable analysis p
 | [`DML_Healthcare_Wait_Time_Linear_Trap`](./DML_Healthcare_Wait_Time_Linear_Trap/) | Double Machine Learning project showing how linear fixed effects can mis-size nonlinear healthcare wait-time interventions |
 | [`Bayesian_Healthcare_AB_Testing_False_Positive_Trap`](./Bayesian_Healthcare_AB_Testing_False_Positive_Trap/) | Monte Carlo study of optimistic historical priors in low-traffic healthcare A/B tests |
 | [`AirForce_Recruiting_Switchback_Experiment`](./AirForce_Recruiting_Switchback_Experiment/) | Switchback experiment simulation measuring paid-media incrementality for Air Force recruiting campaigns |
+| [`Aquarium_Store_Sequential_Testing`](./Aquarium_Store_Sequential_Testing/) | Sequential A/B testing simulation comparing peeking risk, O’Brien–Fleming, and Pocock boundaries for an aquarium-store promotion |
 | [`model_templates`](./model_templates/) | Reusable machine learning templates to copy into future projects |
 
 ## Current Projects
@@ -64,6 +65,16 @@ A simulated public-sector marketing analytics project that tests whether reduced
 **Tools:** Python, pandas, statsmodels, matplotlib  
 **Methods:** region-day switchback experiment, fixed effects regression, permutation/randomization inference, platform attribution vs first-party outcome measurement  
 **Current results:** reduced-bid days save about $669 per region-day, while platform-attributed leads fall by about 21.74 but first-party total qualified leads fall by only about 2.04. Cost per qualified lead drops from about $33.35 to $18.22.
+
+### Aquarium Store Sequential Testing
+
+An original synthetic promotion experiment comparing fixed-horizon testing, unadjusted peeking, and calibrated group-sequential boundaries for customer spending.
+
+**Tools:** Python, NumPy, pandas, SciPy, matplotlib
+
+**Methods:** correlated Gaussian information increments, independent Monte Carlo boundary calibration and validation, two-sided first-crossing decisions, power and stopping-time analysis
+
+**Current results:** daily peeking produces a 28.20% false-positive rate; O’Brien–Fleming and Pocock hold it near 5%. For a +$4 effect, Pocock stops about four days earlier on average, with lower detection probability at the same maximum sample size.
 
 ### Phenotypic Association Analysis in `HairEyeColor`
 

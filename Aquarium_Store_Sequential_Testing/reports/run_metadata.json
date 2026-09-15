@@ -1,0 +1,19 @@
+{
+  "seed": 20260915,
+  "evaluation_trials_per_scenario": 100000,
+  "calibration_trials": 500000,
+  "alpha_two_sided": 0.05,
+  "control_mean_dollars": 45.0,
+  "known_spending_sd_dollars": 25.0,
+  "customers_per_arm_per_day": 40,
+  "planned_look_days": [
+    6,
+    12,
+    18,
+    24,
+    30
+  ],
+  "final_standard_error_dollars": 1.0206207261596576,
+  "numpy_version": "2.0.2",
+  "pandas_version": "2.3.3"
+}

@@ -9,6 +9,7 @@ This repository is my working hub for data science projects, reusable analysis p
 | [`Phenotypic_Association_Analysis_in_HairEyeColor`](./Phenotypic_Association_Analysis_in_HairEyeColor/) | Completed R/Quarto statistical analysis project |
 | [`Causal_MLB_Pitch_Clock_Impact`](./Causal_MLB_Pitch_Clock_Impact/) | Causal inference project estimating the impact of MLB's 2023 pitch clock on game duration |
 | [`Uplift_Modeling_Random_Forest`](./Uplift_Modeling_Random_Forest/) | Causal machine learning project estimating heterogeneous treatment effects with a Random Forest T-learner |
+| [`Uplift_Subscription_Retention_T_Learner`](./Uplift_Subscription_Retention_T_Learner/) | Uplift modeling project targeting streaming subscribers by incremental retained revenue from a proactive save offer |
 | [`Surrogate_Index_Aquarium_Store`](./Surrogate_Index_Aquarium_Store/) | Surrogate-index project estimating long-term treatment effects from short-term aquarium-store behaviors |
 | [`DML_Healthcare_Wait_Time_Linear_Trap`](./DML_Healthcare_Wait_Time_Linear_Trap/) | Double Machine Learning project showing how linear fixed effects can mis-size nonlinear healthcare wait-time interventions |
 | [`Bayesian_Healthcare_AB_Testing_False_Positive_Trap`](./Bayesian_Healthcare_AB_Testing_False_Positive_Trap/) | Monte Carlo study of optimistic historical priors in low-traffic healthcare A/B tests |
@@ -33,6 +34,14 @@ A causal machine learning project that simulates a treatment/control marketing e
 **Tools:** Python, pandas, scikit-learn, matplotlib  
 **Methods:** simulated experiment, T-learner, separate treated/control outcome models, CATE estimation, uplift decile analysis  
 **Current results:** holdout CATE correlation of 0.910 and R-squared of 0.821. The model ranks customers into a targeting policy where the top 30% by predicted uplift are labeled `Would treat` and the rest are `Excluded`.
+
+### Subscription Retention Uplift Modeling
+
+A causal machine learning project that adapts the reusable T-learner template to a subscription-retention save-offer experiment. The model ranks subscribers by incremental 90-day retained revenue rather than renewal likelihood.
+
+**Tools:** Python, pandas, scikit-learn, seaborn, matplotlib  
+**Methods:** simulated randomized experiment, T-learner, Random Forest outcome models, CATE estimation, uplift decile analysis, policy gain curve  
+**Current results:** holdout CATE correlation of 0.831 and R-squared of 0.680. Targeting the top 25% by predicted uplift captures about $13,526 of true incremental value and beats random same-size targeting by about $9,417.
 
 ### Surrogate Index for Aquarium Store Treatment Effects
 

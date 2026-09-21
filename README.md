@@ -43,6 +43,16 @@ A causal machine learning project that adapts the reusable T-learner template to
 **Methods:** simulated randomized experiment, T-learner, Random Forest outcome models, CATE estimation, uplift decile analysis, policy gain curve  
 **Current results:** holdout CATE correlation of 0.831 and R-squared of 0.680. Targeting the top 25% by predicted uplift captures about $13,526 of true incremental value and beats random same-size targeting by about $9,417.
 
+**Visuals:**
+
+![Subscription retention predicted vs true uplift](./Uplift_Subscription_Retention_T_Learner/artifacts/predicted_vs_true_uplift.png)
+
+![Subscription retention uplift by decile](./Uplift_Subscription_Retention_T_Learner/artifacts/uplift_by_decile.png)
+
+![Subscription retention policy gain curve](./Uplift_Subscription_Retention_T_Learner/artifacts/policy_gain_curve.png)
+
+![Subscription retention CATE feature importance](./Uplift_Subscription_Retention_T_Learner/artifacts/cate_feature_importance.png)
+
 ### Surrogate Index for Aquarium Store Treatment Effects
 
 A causal/business analytics project that estimates the long-term impact of an aquarium-store treatment before the final 180-day outcome is available.
